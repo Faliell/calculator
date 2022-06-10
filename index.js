@@ -4,6 +4,28 @@ let simbol = "";
 let textDisplay = 0;
 let ev = null;
 const numFull = [];
+const okValue = [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "0",
+  "+",
+  "-",
+  "/",
+  "*",
+  "=",
+  "c",
+  ".",
+  "ce",
+  "+/-",
+];
 
 function operate(num1 = 0, num2 = 0, operator) {
   switch (operator) {
@@ -57,39 +79,6 @@ function negative(list) {
   }
   return list;
 }
-
-document.addEventListener("keydown", (event) => {
-  const okValue = [
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "0",
-    "+",
-    "-",
-    "/",
-    "*",
-    "=",
-    "c",
-  ];
-  if (okValue.includes(event.key)) {
-    console.log(event.key);
-    evKey = event.key;
-    display(evKey);
-  }
-});
-
-document.addEventListener("click", (event) => {
-  evMouse = event.target.innerText;
-  display(evMouse);
-});
-
 function display(ev) {
   let display = document.querySelector("#display");
   if (ev === "ce") {
@@ -182,6 +171,7 @@ function display(ev) {
         display.innerText = num1.toString().substring(0, 8);
       } else if (ev === "=") {
         num1 = operate(num1, num2, simbol);
+        textDisplay = num1;
         numFull.length = 0;
         console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = num1.toString().substring(0, 8);
@@ -198,3 +188,20 @@ function display(ev) {
     }
   }
 }
+
+document.addEventListener("keydown", (event) => {
+  if (okValue.includes(event.key)) {
+    console.log(event.key);
+    evKey = event.key;
+    display(evKey);
+  }
+});
+
+document.addEventListener("click", (event) => {
+  evMouse = event.target.innerText;
+
+  if (okValue.includes(evMouse)) {
+    console.log(evMouse);
+    display(evMouse);
+  }
+});
