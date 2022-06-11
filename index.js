@@ -4,27 +4,7 @@ let simbol = "";
 let textDisplay = 0;
 let ev = null;
 const numFull = [];
-const okValue = [
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "0",
-  "+",
-  "-",
-  "/",
-  "*",
-  "=",
-  "c",
-  ".",
-  "ce",
-  "+/-",
+const okValue = ["0","1","2","3","4","5","6","7","8","9","0","+","-","/","*","=","c",".","ce","+/-",
 ];
 
 function operate(num1 = 0, num2 = 0, operator) {
