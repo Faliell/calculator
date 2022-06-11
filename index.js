@@ -79,7 +79,7 @@ function negative(list) {
   }
   return list;
 }
-function display(ev) {
+function calculator(ev) {
   let display = document.querySelector("#display");
   if (ev === "ce") {
     num1 = null;
@@ -91,98 +91,80 @@ function display(ev) {
   } else if (ev === "c") {
     numFull.pop();
     textDisplay = numFull.join("");
-    console.log(numFull);
     display.innerText = textDisplay;
   } else {
     if (!num1) {
       if (ev == "." && numFull.includes(".")) {
-        console.log("Alredy .");
       } else if (ev === "+/-") {
         negative(numFull);
         textDisplay = numFull.join("");
-        console.log(numFull);
         display.innerText = textDisplay;
       } else if (ev === "+") {
         num1 = parseFloat(textDisplay);
         numFull.length = 0;
         simbol = "add";
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = num1.toString().substring(0, 8);
       } else if (ev === "-") {
         num1 = parseFloat(textDisplay);
         numFull.length = 0;
         simbol = "subtract";
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = num1.toString().substring(0, 8);
       } else if (ev === "/") {
         num1 = parseFloat(textDisplay);
         numFull.length = 0;
         simbol = "divide";
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = num1.toString().substring(0, 8);
       } else if (ev === "*") {
         num1 = parseFloat(textDisplay);
         numFull.length = 0;
         simbol = "multiply";
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = num1.toString().substring(0, 8);
       } else if (ev === "=") {
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = 0;
       } else {
         numFull.push(ev);
         textDisplay = numFull.join("");
-        console.log(textDisplay);
         display.innerText = textDisplay;
       }
     } else {
       if (ev == "." && numFull.includes(".")) {
-        console.log("Alredy .");
       } else if (ev === "+/-") {
         negative(numFull);
         textDisplay = numFull.join("");
-        console.log(numFull);
         display.innerText = textDisplay;
       } else if (ev === "+") {
         num1 = operate(num1, num2, simbol);
         num2 = parseFloat(textDisplay);
         numFull.length = 0;
         simbol = "add";
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = num1.toString().substring(0, 8);
       } else if (ev === "-") {
         num1 = operate(num1, num2, simbol);
         num2 = parseFloat(textDisplay);
         numFull.length = 0;
         simbol = "subtract";
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = num1.toString().substring(0, 8);
       } else if (ev === "/") {
         num1 = operate(num1, num2, simbol);
         numFull.length = 0;
         simbol = "divide";
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = num1.toString().substring(0, 8);
       } else if (ev === "*") {
         num1 = operate(num1, num2, simbol);
         numFull.length = 0;
         simbol = "multiply";
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = num1.toString().substring(0, 8);
       } else if (ev === "=") {
         num1 = operate(num1, num2, simbol);
         textDisplay = num1;
         numFull.length = 0;
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
         display.innerText = num1.toString().substring(0, 8);
         num2 = null;
         simbol = "equal";
-        console.log(`num1 ${num1} num2 ${num2} simbol ${simbol}`);
       } else {
         numFull.push(ev);
         textDisplay = numFull.join("");
         num2 = parseFloat(textDisplay);
-        console.log(textDisplay);
         display.innerText = textDisplay;
       }
     }
@@ -191,17 +173,14 @@ function display(ev) {
 
 document.addEventListener("keydown", (event) => {
   if (okValue.includes(event.key)) {
-    console.log(event.key);
     evKey = event.key;
-    display(evKey);
+    calculator(evKey);
   }
 });
 
 document.addEventListener("click", (event) => {
   evMouse = event.target.innerText;
-
   if (okValue.includes(evMouse)) {
-    console.log(evMouse);
-    display(evMouse);
+    calculator(evMouse);
   }
 });
